@@ -8,9 +8,15 @@ class Person(models.Model):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
 
+    def __str__(self):
+        return self.username
+
 
 class Client(Person):
     address = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.address
 
 
 class Pet(models.Model):
@@ -18,9 +24,15 @@ class Pet(models.Model):
     description = models.CharField(max_length=200)
     owner = models.ForeignKey(Client, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.name
+
 
 class MammaPet(Person):
     phone = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.phone
 
 
 class Contract(models.Model):
@@ -32,3 +44,6 @@ class Contract(models.Model):
     price = models.FloatField(default=0)
     # TODO: CHANGE TO ENUM
     status = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.status
