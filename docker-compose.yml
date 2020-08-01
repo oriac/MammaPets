@@ -8,14 +8,25 @@ services:
       - db
     volumes:
       - ./src:/src
+      - ./config:/config
     working_dir: /src/mammapets
     expose:
       - "8000"
     ports:
       - "8000:8000"
+    networks:
+      - mammapets
 
   db:
-    image: mysql:latest
+    image: mysql:5.7
     container_name: data_base
     environment:
       MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+    networks:
+      - mammapets
+networks:
+  mammapets:
