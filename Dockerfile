@@ -1,4 +1,4 @@
-FROM python:3.5
+FROM python:3.8.5
 ENV PYTHONUNBUFFERED 1
 RUN mkdir /config
 ADD /config/requirements.pip /config/

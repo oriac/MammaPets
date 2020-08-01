@@ -1,15 +1,5 @@
 version: '3'
 services:
-  nginx:
-    image: nginx:latest
-    container_name: web_server
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./src:/src
-      - ./config/nginx:/etc/nginx/conf.d
-    depends_on:
-      - web
   web:
     build: .
     container_name: application
@@ -18,9 +8,14 @@ services:
       - db
     volumes:
       - ./src:/src
+    working_dir: /src/mammapets
     expose:
       - "8000"
+    ports:
+      - "8000:8000"
 
   db:
-    image: postgres:latest
+    image: mysql:latest
     container_name: data_base
+    environment:
+      MYSQL_ROOT_PASSWORD: root
