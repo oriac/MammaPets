@@ -1,0 +1,12 @@
+<h1>{{ pet.name }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'web:vote' pet.id %}" method="post">
+{% csrf_token %}
+{% for contract in pet.contract_set.all %}
+    <input type="text" name="contract" id="contract{{ forloop.counter }}" value="{{ contract.status }}">
+    <label for="contract{{ forloop.counter }}">Status:</label><br>
+{% endfor %}
+<input type="submit" value="Vote">
+</form>

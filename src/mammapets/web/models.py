@@ -32,12 +32,12 @@ class MammaPet(Person):
     phone = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.phone
+        return str(self.pk)
 
 
 class Contract(models.Model):
     start_date = models.DateTimeField('date started')
-    end_date = models.DateTimeField('date started')
+    end_date = models.DateTimeField('date ended')
     pet = models.ForeignKey(Pet, on_delete=models.CASCADE)
     mamma_pet = models.ForeignKey(MammaPet, on_delete=models.CASCADE)
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
