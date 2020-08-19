@@ -32,8 +32,11 @@ def contract(request):
     form = ContractForm()
     return render(request, 'pets/contract.html', {'form': form})
 
+
 def new_contract(request):
     form = ContractForm(request.POST)
     if form.is_valid():
-        return HttpResponse("contract not saved")
+        post = form.save(commit=False)
+        post.save()
+        return HttpResponse("contract saved")
     return HttpResponse("contract not saved")
