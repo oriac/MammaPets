@@ -1,6 +1,5 @@
 from django.db import models
 
-
 # Create your models here.
 
 class Person(models.Model):
@@ -16,7 +15,7 @@ class Client(Person):
     address = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.address
+        return self.username
 
 
 class Pet(models.Model):
@@ -32,7 +31,7 @@ class MammaPet(Person):
     phone = models.CharField(max_length=200)
 
     def __str__(self):
-        return str(self.pk)
+        return self.username
 
 
 class Contract(models.Model):

@@ -1,4 +1,6 @@
 from django.http import HttpResponse
+
+from .forms import ContractForm
 from .models import Pet
 from django.template import loader
 from django.shortcuts import render
@@ -24,3 +26,14 @@ def results(request, pet_id):
 
 def vote(request, pet_id):
     return HttpResponse("You're voting on question %s." % pet_id)
+
+
+def contract(request):
+    form = ContractForm()
+    return render(request, 'pets/contract.html', {'form': form})
+
+def new_contract(request):
+    form = ContractForm(request.POST)
+    if form.is_valid():
+        return HttpResponse("contract not saved")
+    return HttpResponse("contract not saved")
